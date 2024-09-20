@@ -28,18 +28,20 @@ def form_position():
     table_name = soup.find_all('h3')[2].text
     mest = soup.find_all('h3')[3].text.strip()
     count = 0
+    pts = []
     for i in table:
         tds = i.find_all('td')
         id = tds[1].text
         priority = int(tds[2].text)
         original = tds[6].text
-        print(original)
         if tds[3].text != '':
             points = int(tds[3].text)
         else: points = 0
-        if points > 229 and priority == 1:
+        """ print(points) """
+        if points > 229 and original == 'Да' and priority <= 2:
             count += 1
-    print(table_name, count, mest)
+    print(len(original))
+    print(f'{table_name}, позиция: {count}, {mest}')
 
 
 
